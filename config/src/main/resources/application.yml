@@ -1,0 +1,16 @@
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ecartify/ecartify-config.git
+          clone-on-start: true
+  security:
+    #hard coding for now
+    user:
+      name: root
+      password: s3cr3t
+
