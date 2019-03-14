@@ -14,10 +14,13 @@ public class ConfigClient
     @Value("${prop.test}")
     private String testProp;
 
+    @Value("${prop.encrypted}")
+    private String encrypted;
+
 
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
     public String testProp()
     {
-        return String.format(testProp);
+        return String.format("Non encrypted %s Encrypted %s",testProp,encrypted);
     }
 }
