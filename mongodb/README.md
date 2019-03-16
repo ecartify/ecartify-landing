@@ -4,7 +4,7 @@ docker build -t ecartify/mongo
 
 After that to start type
 
-docker run -d -env MONGODB_PASSWORD=<password> ecartify/mongo
+docker run -d -p 27017:27017 -env MONGODB_PASSWORD=<password> ecartify/mongo
 
 you can get the password from the config server by calling:
 
