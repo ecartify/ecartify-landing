@@ -1,5 +1,7 @@
 server:
   port: 8888
+  servlet:
+    context-path: /config-service
 
 spring:
   cloud:
@@ -7,7 +9,8 @@ spring:
       server:
         git:
           uri: https://github.com/ecartify/ecartify-config.git
-          clone-on-start: true
+          clone-on-start: false
+          basedir: ${CONFIG_SERVER_GIT_REPO_LOCAL_FOLDER:./config/src/main/resources/shared}
   security:
     #hard coding for now
     user:
