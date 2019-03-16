@@ -6,23 +6,19 @@
         <groupId>com.ecartify</groupId>
         <artifactId>ecartify-landing</artifactId>
         <version>0.1.0</version>
-        <relativePath/>
     </parent>
 
     <groupId>com.ecartify</groupId>
-    <artifactId>auth-service</artifactId>
+    <artifactId>store-service</artifactId>
     <version>0.1.0</version>
     <packaging>war</packaging>
-    <name>Auth Service</name>
+    <name>Account Service</name>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
-        <!--Code Compile Dependencies-->
-
-        <!--Spring Dependencies-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -35,20 +31,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-        </dependency>
-        <!--Spring Dependencies-->
-
-        <!--Code Compile Dependencies-->
-
-        <!--Other Non Code Dependencies-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
@@ -57,7 +39,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--Other Non Code Dependencies-->
     </dependencies>
 
     <build>
