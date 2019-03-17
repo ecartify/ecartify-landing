@@ -1,4 +1,4 @@
-package com.ecartify.domain;
+package com.ecartify.authorization.domain;
 
 import java.util.Collection;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.ecartify.exceptions;
+package com.ecartify.authorization.exceptions;
 
 public class UserServiceException extends RuntimeException
 {
