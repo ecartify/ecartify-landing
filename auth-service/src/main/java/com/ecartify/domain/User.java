@@ -5,17 +5,21 @@ import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Document(collection = "users")
 public class User implements UserDetails
 {
     @Id
     private String username;
+    @JsonIgnore
     private String password;
+    @JsonIgnore
     private List<SimpleGrantedAuthority> authorities;
+    @JsonIgnore
     private boolean enabled;
 
     public String getUsername()
@@ -51,18 +55,21 @@ public class User implements UserDetails
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired()
     {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked()
     {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired()
     {
         return true;

@@ -1,4 +1,4 @@
-package com.ecartify.config;
+package com.ecartify.authorization;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConfigApplicationTests {
+public class AuthServiceApplicationTest
+{
 
 	@Test
 	public void contextLoads() {
