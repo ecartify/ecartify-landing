@@ -1,18 +1,17 @@
-package com.ecartify.service;
+package com.ecartify.authorization.service;
 
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ecartify.domain.User;
-import com.ecartify.domain.UserCreateRequest;
-import com.ecartify.domain.UserUpdateRequest;
-import com.ecartify.exceptions.UserServiceException;
-import com.ecartify.repository.UserRepository;
+import com.ecartify.authorization.domain.User;
+import com.ecartify.authorization.domain.UserCreateRequest;
+import com.ecartify.authorization.domain.UserUpdateRequest;
+import com.ecartify.authorization.exceptions.UserServiceException;
+import com.ecartify.authorization.repository.UserRepository;
 
 @Service
 public class UserService

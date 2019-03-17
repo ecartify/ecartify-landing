@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2SsoProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -51,6 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Value("${zuul.auth-free-endpoints}")
     private String[] authFreeEndPoints;
+
+    @Autowired
+    private LoadBalancerInterceptor loadBalancerInterceptor;
 
     @Bean
     @ConfigurationProperties(prefix = "security.oauth2.sso")
@@ -125,10 +129,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     public OAuth2RestOperations oAuth2RestTemplateBean()
     {
         ResourceOwnerPasswordAccessTokenProvider tokenProvider = new ResourceOwnerPasswordAccessTokenProvider();
-        /*tokenProvider.setInterceptors(Collections.singletonList(loadBalancerInterceptor));*/
+        tokenProvider.setInterceptors(Collections.singletonList(loadBalancerInterceptor));
 
         OAuth2RestTemplate oauth2Template = new OAuth2RestTemplate(clientDetails(), oauth2ClientContext);
-        /*oauth2Template.setInterceptors(Collections.singletonList(loadBalancerInterceptor));*/
+        oauth2Template.setInterceptors(Collections.singletonList(loadBalancerInterceptor));
         oauth2Template.setAccessTokenProvider(new AccessTokenProviderChain(Collections.singletonList(tokenProvider)));
 
         return oauth2Template;

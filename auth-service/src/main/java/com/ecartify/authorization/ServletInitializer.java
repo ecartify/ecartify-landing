@@ -1,9 +1,7 @@
-package com.ecartify;
+package com.ecartify.authorization;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-import com.ecartify.AuthServiceApplication;
 
 public class ServletInitializer extends SpringBootServletInitializer {
 

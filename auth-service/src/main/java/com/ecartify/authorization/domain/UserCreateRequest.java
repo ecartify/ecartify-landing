@@ -1,4 +1,4 @@
-package com.ecartify.domain;
+package com.ecartify.authorization.domain;
 
 public class UserCreateRequest
 {
