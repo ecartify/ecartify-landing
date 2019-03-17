@@ -6,7 +6,6 @@
 		<groupId>com.ecartify</groupId>
 		<artifactId>ecartify-landing</artifactId>
 		<version>0.1.0</version>
-		<relativePath/>
 	</parent>
 	<groupId>com.ecartify</groupId>
 	<artifactId>payment-service</artifactId>
