@@ -1,5 +1,10 @@
 package com.ecartify.gateway.config;
 
+import java.util.Arrays;
+import java.util.Collections;
+
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2SsoProperties;
@@ -38,10 +43,6 @@ import org.springframework.security.web.util.matcher.RequestHeaderRequestMatcher
 import org.springframework.web.accept.ContentNegotiationStrategy;
 import org.springframework.web.accept.HeaderContentNegotiationStrategy;
 
-import javax.servlet.Filter;
-
-import java.util.Collections;
-
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
@@ -55,6 +56,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Autowired
     private LoadBalancerInterceptor loadBalancerInterceptor;
+
+    @Autowired
+    private OAuth2TokenHystrixInterceptor oAuth2TokenHystrixInterceptor;
 
     @Bean
     @ConfigurationProperties(prefix = "security.oauth2.sso")
@@ -76,6 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     {
         return new ResourceOwnerPasswordResourceDetails();
     }
+
+
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception
@@ -129,10 +136,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     public OAuth2RestOperations oAuth2RestTemplateBean()
     {
         ResourceOwnerPasswordAccessTokenProvider tokenProvider = new ResourceOwnerPasswordAccessTokenProvider();
-        tokenProvider.setInterceptors(Collections.singletonList(loadBalancerInterceptor));
+        tokenProvider.setInterceptors(Arrays.asList(oAuth2TokenHystrixInterceptor,loadBalancerInterceptor));
 
         OAuth2RestTemplate oauth2Template = new OAuth2RestTemplate(clientDetails(), oauth2ClientContext);
-        oauth2Template.setInterceptors(Collections.singletonList(loadBalancerInterceptor));
+        oauth2Template.setInterceptors(Arrays.asList(oAuth2TokenHystrixInterceptor,loadBalancerInterceptor));
         oauth2Template.setAccessTokenProvider(new AccessTokenProviderChain(Collections.singletonList(tokenProvider)));
 
         return oauth2Template;
