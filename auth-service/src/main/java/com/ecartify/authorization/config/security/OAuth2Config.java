@@ -70,6 +70,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter
                 .autoApprove(true)
                 .accessTokenValiditySeconds(accessTokenValiditiyInSeconds)
                 .refreshTokenValiditySeconds(refreshTokenValiditiyInSeconds);
+
     }
 
 

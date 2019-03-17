@@ -15,23 +15,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     @Autowired
     private MongoUserDetailsService mongoUserDetailsService;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception
-    {
-        auth.userDetailsService(mongoUserDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+    @Bean
+    public BCryptPasswordEncoder getPasswordEncoder(){
+      return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
     {
-        //csrf is disabled as its not a customer facing service
-        http.csrf()
-                .disable()
-                .authorizeRequests()
-                .anyRequest()
-                .fullyAuthenticated()
-                .and()
-                .httpBasic();
+        auth.userDetailsService(mongoUserDetailsService).passwordEncoder(getPasswordEncoder());
     }
 
     @Override
